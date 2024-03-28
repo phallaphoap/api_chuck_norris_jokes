@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuck Norris Jokes</title>
+    <style>
+        body {
+            font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 55px;
+            text-align: center;
+            width: 300px;
+        }
+        
+        h1 {
+            color: #ff6347;
+        }
+        
+        p {
+            color: #666;
+            margin: 10px 0;
+        }
+        
+        .joke-icon {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        
+        #newJokeBtn {
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        #newJokeBtn:hover {
+            background-color: #d84315;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Chuck Norris Joke</h1>
+        <img class="joke-icon" src="chuck_norris_art.jpeg" alt="Chuck Norris">
+        <div id="joke"></div>
+        <button id="newJokeBtn">Get New Joke</button>
+        <div id="api-info">
+            <h2>About the API</h2>
+            <p>The Chuck Norris Jokes API provides random Chuck Norris jokes in JSON format. It's a fun and light-hearted API that generates jokes related to the legendary Chuck Norris. They are not even funny!</p>
+            <p>Source: <a href="https://api.chucknorris.io/">Chuck Norris Jokes API</a></p>
+            <p>For fetching a random joke, no parameters are needed. Just make a GET request to the API endpoint.</p>
+            <h2>Applications</h2>
+            <p>Entertainment Apps: Chuck Norris jokes can be integrated into entertainment apps or websites to provide users with a fun and light-hearted experience.</p>
+            <p>Daily Chuck Norris Facts: A mobile app or website could provide users with a daily Chuck Norris joke or fact to start their day with a smile.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('newJokeBtn').addEventListener('click', function() {
+            fetch('https://api.chucknorris.io/jokes/random')
+                .then(response => response.json())
+                .then(data => {
+                    const joke = data.value;
+                    document.getElementById('joke').innerText = joke;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
+</body>
+
+
+</html>
